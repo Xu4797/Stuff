@@ -1,0 +1,17 @@
+{
+  "routes": [
+    {
+      "src": "^/api/auth-simple$",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "src": "^/api/auth$",
+      "methods": [
+        "POST"
+      ]
+    }
+  ],
+  "middleware": null
+}

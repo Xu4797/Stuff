@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap');
+
+:root {
+  /* Sci-fi Color Palette */
+  --bg-dark: #050a14;
+  --bg-panel: rgba(10, 20, 35, 0.4);
+  --neon-cyan: #00f3ff;
+  --neon-magenta: #ff00ea;
+  --neon-green: #39ff14;
+  --text-main: #e0f2fe;
+  --text-muted: #94a3b8;
+  --glass-border: rgba(0, 243, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 243, 255, 0.1);
+  --font-main: 'Outfit', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(255, 0, 234, 0.08), transparent 25%);
+}
+
+.glass-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+}
+
+.neon-text-cyan {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.neon-text-magenta {
+  color: var(--neon-magenta);
+  text-shadow: 0 0 10px rgba(255, 0, 234, 0.5);
+}
+
+.btn-sci-fi {
+  background: transparent;
+  color: var(--neon-cyan);
+  font-family: var(--font-display);
+  font-weight: 700;
+  border: 1px solid var(--neon-cyan);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2) inset;
+}
+
+.btn-sci-fi:hover {
+  background: var(--neon-cyan);
+  color: var(--bg-dark);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+}
+
+.btn-sci-fi-primary {
+  background: rgba(0, 243, 255, 0.1);
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+}
+
+.btn-sci-fi-primary:hover {
+  background: var(--neon-cyan);
+  color: var(--bg-dark);
+}
+
+.input-sci-fi {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-sci-fi:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+::placeholder {
+  color: var(--text-muted);
+}
+
+/* 移动端历史记录侧边栏适配 */
+@media (max-width: 768px) {
+  .mobile-overlay {
+    display: block !important;
+  }
+  
+  .history-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+  }
+}
+
+/* HomePage 标题响应式适配 */
+
+/* 默认：大屏显示一行 "TRACKER.AI" */
+.logo-desktop {
+  display: inline;
+}
+
+.logo-mobile {
+  display: none;
+}
+
+/* 小屏：上下排布，叉号居中并旋转动画 */
+@media (max-width: 480px) {
+  .logo-desktop {
+    display: none;
+  }
+  
+  .logo-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  
+  .logo-mobile > span:first-child {
+    /* TRACKER */
+    font-size: 1.5em;
+    color: var(--neon-cyan);
+    margin-bottom: 0;
+  }
+  
+  .logo-cross {
+    /* 叉号：视觉居中 + 旋转动画（文本版本，已废弃） */
+    font-size: 1em;
+    line-height: 0.6;
+    display: block;
+    margin: 0.2em 0;
+    font-weight: 100;
+    animation: crossRotate 3.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transform-origin: center center;
+  }
+  
+  .logo-cross-svg {
+    /* SVG 叉号：极细线条 */
+    width: 1.1em;
+    height: 1.1em;
+    display: block;
+    margin: 0.1em auto;
+    animation: crossRotate 3.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transform-origin: center center;
+  }
+  
+  .logo-mobile > span:last-child {
+    /* AI */
+    font-size: 1.5em;
+    margin-top: 0;
+  }
+}
+
+/* 叉号旋转动画：快速旋转 + 回弹 */
+@keyframes crossRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(360deg) scale(1.5);
+    opacity: 1;
+  }
+  70% {
+    transform: rotate(360deg) scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 姓名渐变动画：青色 → 黄色 → 品红色 → 青色 */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
